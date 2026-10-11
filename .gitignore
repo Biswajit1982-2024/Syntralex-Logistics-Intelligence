@@ -1,0 +1,19 @@
+# Runtime data — must never be committed (local dev DB, uploaded documents)
+server/data/
+server/uploads/
+
+# If STORAGE_DIR is ever pointed at a folder inside the repo locally
+/var/data/
+storage/
+
+# Dependencies (none today — kept in case a Postgres migration adds `pg`)
+node_modules/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# OS/editor noise
+.DS_Store
+*.log

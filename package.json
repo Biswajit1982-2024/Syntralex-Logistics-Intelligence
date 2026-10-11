@@ -1,0 +1,15 @@
+{
+  "name": "freight-control-tower",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sea/Air/Road Freight Management — zero-dependency full-stack app (Node built-ins only).",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "seed:reset": "node -e \"require('fs').rmSync('server/data/freight.db',{force:true});require('fs').rmSync('server/data/freight.db-wal',{force:true});require('fs').rmSync('server/data/freight.db-shm',{force:true});console.log('DB reset — it will reseed on next start.')\""
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "dependencies": {}
+}

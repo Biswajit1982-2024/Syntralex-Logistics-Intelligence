@@ -1,0 +1,30 @@
+# Render Blueprint — push this repo to GitHub, then in Render choose
+# "New +" -> "Blueprint" and point it at the repo. Render reads this file
+# and provisions the web service automatically.
+#
+# The persistent disk is required: without it, the SQLite database and any
+# uploaded POD files would be wiped on every deploy/restart, since Render's
+# filesystem is otherwise ephemeral. STORAGE_DIR tells the app to put both
+# the DB and uploads under that one mounted disk instead of next to the code.
+
+services:
+  - type: web
+    name: freight-control-tower
+    runtime: node
+    plan: free
+    buildCommand: "echo 'No build step — zero external dependencies'"
+    startCommand: "node server/server.js"
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 4000
+      - key: STORAGE_DIR
+        value: /var/data
+      - key: SEED_DEMO_PASSWORD
+        generateValue: true
+    disk:
+      name: freight-data
+      mountPath: /var/data
+      sizeGB: 1
